@@ -57,11 +57,12 @@ def redirect_endpoint():
     return redirect('/')
 
 bp_user = Blueprint('user', __name__, url_prefix='/users')
-app.register_blueprint(bp_user)
 
-@bp_user.route('/id')
-def show_user():
+@bp_user.route('/<id>')
+def show_user(id):
     return {
         'nombre': 'Fulano',
         'id': id
     }
+
+app.register_blueprint(bp_user)
