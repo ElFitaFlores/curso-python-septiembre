@@ -1,4 +1,5 @@
-from user import register_user
+from user import register_user, update_user
+from user_factory import UserFactory
 import pytest
 
 class TestRegisterUser:
@@ -36,3 +37,22 @@ class TestRegisterUser:
             register_user(**self.user_data)
 
         assert str(error.value) == 'Incorrect email format.'
+
+
+class TestUpdateUser:
+    def test_update_users_data(self):
+        user = UserFactory.create()
+        
+        user_data = {
+            'first_name': 'Rafael',
+            'last_name': user['last_name'],
+            'birthdate': user['birthdate'],
+            'gender': user['gender'],
+            'email': user['email']
+        }
+        
+        response = update_user(**user_data)
+
+        from user import user_dict
+
+        assert user_dict['first_name'] == 'Rafael'

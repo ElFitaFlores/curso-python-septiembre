@@ -31,6 +31,23 @@ def register_user(
     return 'User succesfully regitered.'
 
 
+def update_user(
+    first_name,
+    last_name,
+    birthdate,
+    gender,
+    email
+):
+    global user_dict
+    data = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'birthdate': birthdate,
+        'gender': gender,
+        'email': email,
+    }
+    user_dict.update(data)
+
 
 def validate_email(email):
    pat = r"^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
